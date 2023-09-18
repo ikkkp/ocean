@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"> -->
+  <!-- <link rel="stylesheet"
+    href="https://cdn.bootcdn.net/ajax/libs/MaterialDesign-Webfont/6.5.95/css/materialdesignicons.min.css"> -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css" rel="stylesheet">
+
+  <style>
+    /* Main styles */
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans:800);
+
+    .text {
+      fill: none;
+      stroke-width: 3;
+      stroke-linejoin: round;
+      stroke-dasharray: 70 330;
+      stroke-dashoffset: 0;
+      -webkit-animation: stroke 6s infinite linear;
+      animation: stroke 6s infinite linear;
+    }
+
+    .text:nth-child(5n + 1) {
+      stroke: #FF5252;
+      -webkit-animation-delay: -1.2s;
+      animation-delay: -1.2s;
+    }
+
+    .text:nth-child(5n + 2) {
+      stroke: #FF9900;
+      -webkit-animation-delay: -2.4s;
+      animation-delay: -2.4s;
+    }
+
+    .text:nth-child(5n + 3) {
+      stroke: #576b95;
+      -webkit-animation-delay: -3.6s;
+      animation-delay: -3.6s;
+    }
+
+    .text:nth-child(5n + 4) {
+      stroke: #56D9CD;
+      -webkit-animation-delay: -4.8s;
+      animation-delay: -4.8s;
+    }
+
+    .text:nth-child(5n + 5) {
+      stroke: #1976D2;
+      -webkit-animation-delay: -6s;
+      animation-delay: -6s;
+    }
+
+    @-webkit-keyframes stroke {
+      100% {
+        stroke-dashoffset: -400;
+      }
+    }
+
+    @keyframes stroke {
+      100% {
+        stroke-dashoffset: -400;
+      }
+    }
+
+    .loading {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+    }
+
+    .loading {
+      background: #fff;
+      background-size: .2em 100%;
+      font: 5em/1 Open Sans, Impact;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    svg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+      Please enable it to continue.</strong>
+  </noscript>
+  <div id="app">
+    <div class="loading">
+      <svg viewBox="0 0 600 300">
+        <!-- Symbol-->
+        <symbol id="s-text">
+          <text text-anchor="middle" x="50%" y="50%" dy=".35em">OCEAN</text>
+        </symbol>
+        <text text-anchor="middle" x="50%" y="70%" dy=".35em" font-size="25" fill="#1976D2"
+          font-weight="bold">正在加载中</text>
+        <!-- Duplicate symbols-->
+        <use class="text" xlink:href="#s-text"></use>
+        <use class="text" xlink:href="#s-text"></use>
+        <use class="text" xlink:href="#s-text"></use>
+        <use class="text" xlink:href="#s-text"></use>
+        <use class="text" xlink:href="#s-text"></use>
+      </svg>
+    </div>
+  </div>
+  <!-- <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.26.0/axios.min.js"></script> -->
+  <!-- built files will be auto injected -->
+</body>
+
+</html>
