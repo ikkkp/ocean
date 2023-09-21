@@ -191,7 +191,6 @@ export default {
           },
         };
       }
-      console.log(this.univ)
       axios({
         method: 'post',
         url: args.url,
