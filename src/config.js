@@ -1,10 +1,10 @@
-export const baseServer = '127.0.0.1';
+// export const baseServer = '127.0.0.1';
+// export const baseServerPort = '8090';
+// export const baseURL = 'http://' + baseServer + (baseServerPort != null ? (':' + baseServerPort) : '');
+
+export const baseServer = '47.96.126.107';
 export const baseServerPort = '8090';
 export const baseURL = 'http://' + baseServer + (baseServerPort != null ? (':' + baseServerPort) : '');
-
-// export const baseServer = 'bit.lib4univ.cn';
-// export const baseServerPort = null;
-// export const baseURL = 'https://' + baseServer + (baseServerPort != null ? (':' + baseServerPort) : '');
 
 // 预览文件加载
 export const pdfjsViewerURL = 'http://lib4univ.oriole.cn/pdfjs/web/viewer.html?file=';
