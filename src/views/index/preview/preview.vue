@@ -444,6 +444,7 @@ export default {
       this.$refs['freePrintModel'].open();
     },
     openComment() {
+      console.log("aaa")
       let viewareaHeight = document.documentElement.clientHeight - document.getElementById('toolbar').offsetHeight + 'px';
       this.$refs['docCommentModel'].open(viewareaHeight);
     },
