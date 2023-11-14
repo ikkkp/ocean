@@ -60,7 +60,7 @@
 
     <van-popup v-model="showSponsor" closeable position="right" round style="width:90%;height:100%">
       <div class="sponsor">
-        <v-card class="my-2" style="width:90%">
+        <!-- <v-card class="my-2" style="width:90%">
           <v-img src="@/images/main-picture/sponsor_code.jpg"></v-img>
           <v-alert border="right" colored-border type="info" elevation="2" class="mb-0">
             如果有时间，麻烦亲动动手给文库捐助一个免费的红包包，今年的服务器费用也拜托亲啦！<a>捐助者名单</a>
@@ -68,7 +68,7 @@
         </v-card>
         <v-card class="my-2" style="width:90%">
           <v-img src="@/images/main-picture/red_packet.jpg"></v-img>
-        </v-card>
+        </v-card> -->
       </div>
     </van-popup>
   </div>
