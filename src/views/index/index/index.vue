@@ -233,7 +233,7 @@ export default {
       let groupID = location.split('/')[0];
       let indexString = location.split('/')[1];
       let typeID = location.split('/')[2];
-      let tagString = location.split('/')[3];
+      let tagString = location.split('/')[3]; 
       this.$Axios({
         method: 'get',
         url: '/docClassificationService/getGroupsFileList',

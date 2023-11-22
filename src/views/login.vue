@@ -227,10 +227,10 @@ export default {
             }
           }
         })
-        .catch((error) => {
-          this.$refs.loading.hide();
-          Notify({ type: 'danger', message: '其他服务器错误' + error });
-        });
+        // .catch((error) => {
+        //   this.$refs.loading.hide();
+        //   Notify({ type: 'danger', message: '其他服务器错误' + error });
+        // });
     },
   },
 };
