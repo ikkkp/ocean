@@ -151,7 +151,7 @@
         </v-btn>
       </v-bottom-navigation>
     </div>
-    <div style="position: fixed;bottom: 60px;right: 10px;">
+    <!-- <div style="position: fixed;bottom: 60px;right: 10px;">
       <v-speed-dial v-model="fab" bottom right direction="top" transition="slide-y-reverse-transition">
         <template v-slot:activator>
           <v-btn v-model="fab" color="blue darken-2" dark fab>
@@ -170,7 +170,7 @@
           <v-icon>mdi-account-details</v-icon>
         </v-btn>
       </v-speed-dial>
-    </div>
+    </div> -->
   </div>
 </template>
 
