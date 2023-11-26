@@ -14,9 +14,29 @@
         left: left + 'px',
         top: top + 'px',
     }">
-        <v-btn v-model="fab" class="ma-2" mid fab color="primary">
-            <v-img src="../images/main-picture/great_blue_whale.svg" style="width: 20px;"></v-img>
-        </v-btn>
+        <v-speed-dial v-model="fab" bottom right :direction=this.direction transition="slide-x-reverse-transition"
+            ref="speed_dial">
+            <template v-slot:activator>
+                <v-btn v-model="fab" color="blue darken-2" dark fab>
+                    <v-icon v-if="fab">
+                        mdi-close
+                    </v-icon>
+                    <v-img v-else src="../images/main-picture/great_blue_whale.svg"></v-img>
+                </v-btn>
+            </template>
+            <v-btn fab small>
+                <v-icon>mdi-text-to-speech</v-icon>
+            </v-btn>
+            <v-btn fab small>
+                <v-icon>mdi-text-box-search</v-icon>
+            </v-btn>
+            <v-btn fab small>
+                <v-icon>mdi-ship-wheel</v-icon>
+            </v-btn>
+            <v-btn fab small>
+                <v-icon>mdi-lightbulb</v-icon>
+            </v-btn>
+        </v-speed-dial>
     </div>
 </template>
  
@@ -48,6 +68,8 @@ export default {
     data() {
         return {
             fab: false,
+            direction: 'left',
+            touchStartTime: 0,
             top: 0,
             left: 0,
             currentTop: 0,
@@ -63,9 +85,14 @@ export default {
         this.top = this.clientHeight * this.coefficientHeight;
     },
     mounted() {
+        console.log("element");
         this.$nextTick(() => {
             const floatButton = this.$refs.floatButton;
+            const secondChild = floatButton.children[0];
+            const Vnode_list = secondChild.children[1];
+            const textToSpeech_Vnode = Vnode_list.children[0];
             floatButton.addEventListener('touchstart', (e) => {
+                this.touchStartTime = Date.now();
                 floatButton.style.transition = 'none';
                 e.preventDefault(); // Disable scroll
             });
@@ -77,11 +104,13 @@ export default {
                     let touch = e.targetTouches[0];
                     this.left = touch.clientX - 20;
                     this.top = touch.clientY - 25;
-
                 }
             });
             // 拖拽结束后，重新调整组件的位置并重新设置过渡动画
             floatButton.addEventListener('touchend', () => {
+                const touchEndTime = Date.now();
+                (touchEndTime - this.touchStartTime > 500) ? this.fab = true : this.fab = false;
+                this.left > document.documentElement.clientWidth / 2 ? this.direction = 'left' : this.direction = 'right';
                 floatButton.style.transition = 'all 0.3s';
                 if (this.left > document.documentElement.clientWidth / 2) {
                     this.left = this.clientWidth - this.itemWidth - this.gapWidth;
@@ -93,12 +122,22 @@ export default {
                     this.top = this.clientHeight - this.itemHeight - 80;
                 }
             });
+            console.log(Vnode_list);
+            console.log(textToSpeech_Vnode);
+            if (textToSpeech_Vnode) {
+                textToSpeech_Vnode.addEventListener('touchstart', () => {
+                    this.text2Speech();
+                });
+            }
+
         });
     },
     methods: {
-        // 返回首页菜单
         goCreatePage() {
             console.log('返回首页');
+        },
+        text2Speech() {
+            console.log('语音转文字');
         },
     },
 };
@@ -108,10 +147,5 @@ export default {
 .backHome {
     position: fixed;
     z-index: 999;
-
-    img {
-        width: 100%;
-        height: 100%;
-    }
 }
 </style>

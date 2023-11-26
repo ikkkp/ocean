@@ -8,6 +8,8 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@jamescoyle/vue-icon": "^0.1.2",
+    "@mdi/js": "^7.3.67",
     "axios": "^0.24.0",
     "babel-plugin-import": "^1.13.3",
     "compression-webpack-plugin": "^4.0.0",
@@ -52,6 +54,4 @@
     "last 2 versions",
     "not dead"
   ]
-
-
 }
