@@ -3,23 +3,31 @@
     <v-main>
       <router-view :key="key" />
       <ai-chat-ball />
+      <ai-chat-sheet />
     </v-main>
   </v-app>
 </template>
 
 <script>
 import aiChatBall from './components/aiChatBall.vue';
+import aiChatSheet from './components/aiconponent/aiChatSheet.vue';
+
 export default {
   name: 'app',
   components: {
     aiChatBall,
+    aiChatSheet
   },
   computed: {
     key() {
       return this.$route.path + Math.random();
     },
   },
-
+  data() {
+    return {
+      text2SpeechShow: false,
+    }
+  }
 
 }
 </script>

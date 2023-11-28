@@ -7,6 +7,18 @@
 !-->
 
 <!-- 可拖拽的小球 封装 -->
+ 
+<style lang="scss" scoped>
+.backHome {
+    position: fixed;
+    z-index: 999;
+}
+
+.content {
+    padding: 16px 16px 160px;
+}
+</style>
+
 <template>
     <div ref="floatButton" class="backHome" @click="goCreatePage()" :style="{
         width: itemWidth + 'px',
@@ -24,7 +36,7 @@
                     <v-img v-else src="../images/main-picture/great_blue_whale.svg"></v-img>
                 </v-btn>
             </template>
-            <v-btn fab small>
+            <v-btn fab small @touchstart="text2Speech()">
                 <v-icon>mdi-text-to-speech</v-icon>
             </v-btn>
             <v-btn fab small>
@@ -37,6 +49,7 @@
                 <v-icon>mdi-lightbulb</v-icon>
             </v-btn>
         </v-speed-dial>
+
     </div>
 </template>
  
@@ -57,7 +70,7 @@ export default {
         gapWidth: {
             // 距离左右两边距离
             type: Number,
-            default: 10,
+            default: 20,
         },
         coefficientHeight: {
             // 从上到下距离比例
@@ -85,12 +98,8 @@ export default {
         this.top = this.clientHeight * this.coefficientHeight;
     },
     mounted() {
-        console.log("element");
         this.$nextTick(() => {
             const floatButton = this.$refs.floatButton;
-            const secondChild = floatButton.children[0];
-            const Vnode_list = secondChild.children[1];
-            const textToSpeech_Vnode = Vnode_list.children[0];
             floatButton.addEventListener('touchstart', (e) => {
                 this.touchStartTime = Date.now();
                 floatButton.style.transition = 'none';
@@ -109,27 +118,17 @@ export default {
             // 拖拽结束后，重新调整组件的位置并重新设置过渡动画
             floatButton.addEventListener('touchend', () => {
                 const touchEndTime = Date.now();
-                (touchEndTime - this.touchStartTime > 500) ? this.fab = true : this.fab = false;
-                this.left > document.documentElement.clientWidth / 2 ? this.direction = 'left' : this.direction = 'right';
+                (touchEndTime - this.touchStartTime < 500) ? this.fab = !this.fab : console.log('long press activated');
+                (this.left > document.documentElement.clientWidth / 2) ? this.direction = 'left' : this.direction = 'right';
                 floatButton.style.transition = 'all 0.3s';
-                if (this.left > document.documentElement.clientWidth / 2) {
-                    this.left = this.clientWidth - this.itemWidth - this.gapWidth;
-                } else {
-                    this.left = 20;
-                } if (this.top < 0) {
-                    this.top = 0;
+                (this.left > document.documentElement.clientWidth / 2) ?
+                    this.left = this.clientWidth - this.itemWidth + this.gapWidth : this.left = this.gapWidth;
+                if (this.top < 0) {
+                    this.top = 20;
                 } else if (this.top > this.clientHeight - this.itemHeight) {
                     this.top = this.clientHeight - this.itemHeight - 80;
                 }
             });
-            console.log(Vnode_list);
-            console.log(textToSpeech_Vnode);
-            if (textToSpeech_Vnode) {
-                textToSpeech_Vnode.addEventListener('touchstart', () => {
-                    this.text2Speech();
-                });
-            }
-
         });
     },
     methods: {
@@ -137,15 +136,8 @@ export default {
             console.log('返回首页');
         },
         text2Speech() {
-            console.log('语音转文字');
+            this.$store.state.text2SpeechSheet = true;
         },
     },
 };
 </script>
- 
-<style lang="scss" scoped>
-.backHome {
-    position: fixed;
-    z-index: 999;
-}
-</style>
