@@ -1,6 +1,6 @@
 # lib4univ-view
 
-**lib4univ是使用基于Transformers.js模型NLP文本知识向量抽取和AIGC构建的开源知识图谱校园文库**
+**lib4univ是使用基于Transformers.js 模型NLP文本知识向量抽取和AIGC构建的开源知识图谱校园文库**
 
 lib4univ是一款基于先进技术的学术知识文库与学习平台，致力于提供智能化、个性化的学术支持和学习体验。
 
